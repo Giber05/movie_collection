@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_collection/modules/authenticated/features/home/presentation/screens/home_screen.dart';
+import 'package:movie_collection/modules/authenticated/features/home/presentation/screens/home/home_screen.dart';
 part 'widgets/bottom_navigation.dart';
 
 enum BotNavMenu {

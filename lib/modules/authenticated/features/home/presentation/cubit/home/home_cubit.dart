@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:movie_collection/infrastructure/constant/network_constants.dart';
 import 'package:movie_collection/modules/authenticated/features/home/domain/models/home_movies_model.dart';
 import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
-import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_popular_movies.dart';
+import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_home_movies.dart';
 
 part 'home_state.dart';
 
@@ -15,12 +15,10 @@ class HomeCubit extends Cubit<HomeState> {
 
   void getHomeMovies() async {
     final usecaseCall = await _getHomeMovies(
-        GetPopularMoviesParams(token: NetworkConstants.token, page: 1));
+        GetHomeMoviesParams(token: NetworkConstants.token, page: 1));
     usecaseCall.when(
       success: (data) => emit(
-        HomeLoaded(
-         movies: data
-        ),
+        HomeLoaded(movies: data),
       ),
     );
   }

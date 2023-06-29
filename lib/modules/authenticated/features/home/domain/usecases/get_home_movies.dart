@@ -1,29 +1,29 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:injectable/injectable.dart';
 import 'package:movie_collection/infrastructure/architecture/usecase.dart';
 import 'package:movie_collection/infrastructure/types/paginated/paginated.dart';
 import 'package:movie_collection/infrastructure/types/resource/resource.dart';
+import 'package:movie_collection/modules/authenticated/features/home/domain/models/home_movies_model.dart';
 import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
 import 'package:movie_collection/modules/authenticated/features/home/domain/repositories/movie_repo.dart';
 
 @injectable
-class GetPopularMovies
-    extends Usecase<GetPopularMoviesParams, Paginated<List<MovieModel>>> {
+class GetHomeMovies extends Usecase<GetHomeMoviesParams, HomeMoviesModel> {
   final MovieRepo _movieRepo;
 
-  GetPopularMovies(this._movieRepo);
+  GetHomeMovies(this._movieRepo);
   @override
-  Future<Resource<Paginated<List<MovieModel>>>> execute(
-      GetPopularMoviesParams params) async {
+  Future<Resource<HomeMoviesModel>> execute(GetHomeMoviesParams params) async {
     return await _movieRepo
-        .getPopularMovies(page: params.page, token: params.token)
+        .getHomeMovies(page: params.page, token: params.token)
         .asFutureResource;
   }
 }
 
-class GetPopularMoviesParams {
+class GetHomeMoviesParams {
   final String token;
   final int page;
-  GetPopularMoviesParams({
+  GetHomeMoviesParams({
     required this.token,
     required this.page,
   });

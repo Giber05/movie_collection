@@ -6,24 +6,24 @@ import 'package:movie_collection/modules/authenticated/features/home/domain/mode
 import 'package:movie_collection/modules/authenticated/features/home/domain/repositories/movie_repo.dart';
 
 @injectable
-class GetPopularMovies
-    extends Usecase<GetPopularMoviesParams, Paginated<List<MovieModel>>> {
+class GetNowPlayingMovies
+    extends Usecase<GetNowPlayingMoviesParams, Paginated<List<MovieModel>>> {
   final MovieRepo _movieRepo;
 
-  GetPopularMovies(this._movieRepo);
+  GetNowPlayingMovies(this._movieRepo);
   @override
   Future<Resource<Paginated<List<MovieModel>>>> execute(
-      GetPopularMoviesParams params) async {
+      GetNowPlayingMoviesParams params) async {
     return await _movieRepo
-        .getPopularMovies(page: params.page, token: params.token)
+        .getNowPlayingMovies(page: params.page, token: params.token)
         .asFutureResource;
   }
 }
 
-class GetPopularMoviesParams {
+class GetNowPlayingMoviesParams {
   final String token;
   final int page;
-  GetPopularMoviesParams({
+  GetNowPlayingMoviesParams({
     required this.token,
     required this.page,
   });

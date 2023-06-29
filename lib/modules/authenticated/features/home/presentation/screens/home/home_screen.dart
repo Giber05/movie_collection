@@ -1,14 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_collection/infrastructure/routing/router.gr.dart';
 import 'package:movie_collection/infrastructure/service_locator/locator_container.dart';
 
 import 'package:movie_collection/infrastructure/widgets/button/default_button.dart';
 import 'package:movie_collection/infrastructure/widgets/card/movie_card.dart';
 import 'package:movie_collection/infrastructure/widgets/loading_indicator.dart';
 import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
-import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/home_cubit.dart';
-part 'widgets/movie_list_section.dart';
+import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/home/home_cubit.dart';
+part 'widgets/movie_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -83,6 +85,9 @@ class _HomeBody extends StatelessWidget {
                   size: size,
                   title: 'Now Playing Movies',
                   movies: state.movies.nowPlayingMovies,
+                  onMorePressed: () {
+                    context.router.push(const NowPlayingMoviesRoute());
+                  },
                 ),
               ),
               const SizedBox(height: 16),
@@ -92,6 +97,9 @@ class _HomeBody extends StatelessWidget {
                   size: size,
                   title: 'Popular Movies',
                   movies: state.movies.popularMovies,
+                  onMorePressed: () {
+                    context.router.push(const PopularMoviesRoute());
+                  },
                 ),
               ),
               const SizedBox(height: 16),
@@ -100,6 +108,9 @@ class _HomeBody extends StatelessWidget {
                 child: _MovieList(
                   size: size,
                   title: 'Top Rated Movies',
+                  onMorePressed: () {
+                    context.router.push(const TopRatedMoviesRoute());
+                  },
                   movies: state.movies.topRatedMovies,
                 ),
               ),
@@ -109,6 +120,9 @@ class _HomeBody extends StatelessWidget {
                 child: _MovieList(
                   size: size,
                   title: 'Upcoming Movies',
+                  onMorePressed: () {
+                    context.router.push(const UpcomingMoviesRoute());
+                  },
                   movies: state.movies.upcomingMovies,
                 ),
               ),

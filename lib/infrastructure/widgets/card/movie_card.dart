@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_collection/infrastructure/constant/network_constants.dart';
-import 'package:movie_collection/infrastructure/widgets/loading_indicator.dart';
+import 'package:movie_collection/infrastructure/widgets/image/network_image.dart';
 import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieModel movie;
@@ -26,17 +24,9 @@ class MovieCard extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: CachedNetworkImage(
-          imageUrl: "${NetworkConstants.baseImageUrl}/${movie.posterPath}",
-          width: double.infinity,
-          fit: BoxFit.cover,
-          progressIndicatorBuilder: (context, url, progress) =>
-              const Center(child: LoadingIndicator()),
-          errorWidget: (context, url, error) => const Center(
-            child: Text('Failed to load image'),
-          ),
-        ),
+        child: MCNetworkImage(imageUrl: movie.posterPath),
       ),
     );
   }
 }
+

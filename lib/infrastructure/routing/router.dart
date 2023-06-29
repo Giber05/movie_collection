@@ -14,5 +14,9 @@ class AppRouter extends $AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(page: MainLayoutRoute.page, initial: true),
         AutoRoute(page: StackTraceRoute.page),
+        AutoRoute(page: PopularMoviesRoute.page),
+        AutoRoute(page: TopRatedMoviesRoute.page),
+        AutoRoute(page: UpcomingMoviesRoute.page),
+        AutoRoute(page: NowPlayingMoviesRoute.page),
       ];
 }
