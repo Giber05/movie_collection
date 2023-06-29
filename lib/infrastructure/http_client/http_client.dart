@@ -8,7 +8,6 @@ import 'package:injectable/injectable.dart';
 import 'package:movie_collection/infrastructure/constant/network_constants.dart';
 import 'package:movie_collection/infrastructure/types/api_result.dart';
 import 'package:movie_collection/infrastructure/types/base_exception.dart';
-import 'package:movie_collection/infrastructure/types/exception/form_exception.dart';
 import 'package:movie_collection/infrastructure/types/exception/session_exception.dart';
 import 'package:movie_collection/infrastructure/types/json.dart';
 
@@ -251,7 +250,7 @@ class RknHttpClient implements BaseHttpClient {
   Map<String, String> _buildHeader(
       Map<String, dynamic>? headers, String? bearerToken) {
     return {
-      "Content-Type": "application/json",
+      "Accept": "application/json",
       if (headers != null) ...headers,
       if (bearerToken != null) 'Authorization': 'Bearer $bearerToken'
     };
@@ -272,19 +271,14 @@ class RknHttpClient implements BaseHttpClient {
     if (response.statusCode >= 200 && response.statusCode <= 299) {
       final mappedData = mapper(result);
       return APIResult<T>(
-          code: result['code'], data: mappedData, message: result['message']);
+          code: response.statusCode, data: mappedData, message: 'Success fetch data');
     }
     if (response.statusCode == 401) {
-      throw SessionException(result['message']);
+      throw SessionException(result['status_message']);
     }
-    if (result['errors'] != null) {
-      final rawErrors = result['errors'] as Map<String, dynamic>;
-      final errors = rawErrors.map((key, value) =>
-          MapEntry(key, (value as List).map((e) => e.toString()).toList()));
-      throw FormException(result['message'], errors);
-    }
-    if (result.containsKey('message') && result['message'] != null) {
-      throw BaseException(result['message']);
+    
+    if (response.statusCode == 404) {
+      throw BaseException(result['status_message']);
     }
     throw BaseException.unknownError();
   }

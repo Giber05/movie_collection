@@ -1,33 +1,24 @@
-
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:movie_collection/infrastructure/types/json.dart';
 
 class Paginated<T> {
   final T data;
-  final Pagination pagination;
+  final int totalData;
+  final int totalPage;
+  final int current;
 
-  Paginated({required this.data, required this.pagination});
+  Paginated({
+    required this.data,
+    required this.totalData,
+    required this.totalPage,
+    required this.current,
+  });
 
   factory Paginated.resultMapper(JSON json, T data) {
     return Paginated(
         data: data,
-        pagination: Pagination.fromJson(json['page']));
+        totalData: json['total_results'],
+        totalPage: json['total_pages'],
+        current: json['page']);
   }
-}
-
-class Pagination {
-  final int total;
-  final int size;
-  final int totalPage;
-  final int current;
-
-  Pagination(
-      {required this.total,
-      required this.size,
-      required this.totalPage,
-      required this.current});
-  factory Pagination.fromJson(JSON json) => Pagination(
-      total: json['total'],
-      size: json['size'],
-      totalPage: json['totalPage'],
-      current: json['current']);
 }

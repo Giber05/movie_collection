@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:movie_collection/infrastructure/routing/router.gr.dart';
+import 'package:movie_collection/modules/authenticated/wrapper/layout_screen.dart';
 
 ///
 ///
@@ -11,7 +12,7 @@ import 'package:movie_collection/infrastructure/routing/router.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: SplashRoute.page, initial: true),
+        AutoRoute(page: MainLayoutRoute.page, initial: true),
         AutoRoute(page: StackTraceRoute.page),
       ];
 }

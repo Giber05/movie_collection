@@ -6,7 +6,7 @@ import 'package:movie_collection/infrastructure/routing/router.dart';
 import 'package:movie_collection/infrastructure/service_locator/locator_container.dart';
 
 class MovieCollectionApp extends StatelessWidget {
-  MovieCollectionApp({
+  const MovieCollectionApp({
     Key? key,
     required this.appRouter,
   }) : super(key: key);
