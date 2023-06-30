@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_collection/infrastructure/constant/network_constants.dart';
 
-import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
+import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
 import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_popular_movies.dart';
 
 part 'popular_movies_state.dart';

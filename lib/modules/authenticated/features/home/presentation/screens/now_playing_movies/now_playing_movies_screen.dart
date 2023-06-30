@@ -5,7 +5,7 @@ import 'package:movie_collection/infrastructure/service_locator/locator_containe
 import 'package:movie_collection/infrastructure/widgets/loading_indicator.dart';
 import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/now_playing_movies/now_playing_movies_cubit.dart';
 import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/popular_movies/popular_movies_cubit.dart';
-import 'package:movie_collection/modules/authenticated/features/home/presentation/widgets/movie_listtile.dart';
+import 'package:movie_collection/infrastructure/widgets/movie/movie_listtile.dart';
 part 'widgets/now_playing_movies_body.dart';
 
 @RoutePage()

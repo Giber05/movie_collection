@@ -17,7 +17,7 @@ import 'package:movie_collection/infrastructure/http_client/http_client.dart'
     as _i4;
 import 'package:movie_collection/infrastructure/routing/router.dart' as _i3;
 import 'package:movie_collection/infrastructure/service_locator/modules/core_module.dart'
-    as _i20;
+    as _i26;
 import 'package:movie_collection/modules/authenticated/features/home/data/datasource/remote/sources/movie_remote_dts.dart'
     as _i6;
 import 'package:movie_collection/modules/authenticated/features/home/data/datasource/remote/sources/movie_remote_dts_impl.dart'
@@ -27,25 +27,37 @@ import 'package:movie_collection/modules/authenticated/features/home/data/reposi
 import 'package:movie_collection/modules/authenticated/features/home/domain/repositories/movie_repo.dart'
     as _i8;
 import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_home_movies.dart'
-    as _i10;
-import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_now_playing_movies.dart'
-    as _i11;
-import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_popular_movies.dart'
-    as _i12;
-import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_top_rated_movies.dart'
-    as _i13;
-import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_upcoming_movies.dart'
     as _i14;
-import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/home/home_cubit.dart'
+import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_now_playing_movies.dart'
     as _i15;
-import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/now_playing_movies/now_playing_movies_cubit.dart'
+import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_popular_movies.dart'
     as _i16;
-import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/popular_movies/popular_movies_cubit.dart'
+import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_top_rated_movies.dart'
     as _i17;
-import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/top_rated_movies/top_rated_movies_cubit.dart'
+import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_upcoming_movies.dart'
     as _i18;
-import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/upcoming_movies/upcoming_movies_cubit.dart'
+import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/home/home_cubit.dart'
     as _i19;
+import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/now_playing_movies/now_playing_movies_cubit.dart'
+    as _i20;
+import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/popular_movies/popular_movies_cubit.dart'
+    as _i21;
+import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/top_rated_movies/top_rated_movies_cubit.dart'
+    as _i24;
+import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/upcoming_movies/upcoming_movies_cubit.dart'
+    as _i25;
+import 'package:movie_collection/modules/authenticated/features/search/data/datasource/remote/sources/search_remote_dts.dart'
+    as _i10;
+import 'package:movie_collection/modules/authenticated/features/search/data/datasource/remote/sources/search_remote_dts_impl.dart'
+    as _i11;
+import 'package:movie_collection/modules/authenticated/features/search/data/repository_impls/search_repo_impl.dart'
+    as _i13;
+import 'package:movie_collection/modules/authenticated/features/search/domain/repositories/search_repo.dart'
+    as _i12;
+import 'package:movie_collection/modules/authenticated/features/search/domain/usecases/search_movies.dart'
+    as _i22;
+import 'package:movie_collection/modules/authenticated/features/search/presentation/cubit/search_cubit.dart'
+    as _i23;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -66,27 +78,35 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i7.MovieRemoteDtsImpl(gh<_i4.BaseHttpClient>()));
     gh.factory<_i8.MovieRepo>(
         () => _i9.MovieRepoImpl(gh<_i6.MovieRemoteDts>()));
-    gh.factory<_i10.GetHomeMovies>(
-        () => _i10.GetHomeMovies(gh<_i8.MovieRepo>()));
-    gh.factory<_i11.GetNowPlayingMovies>(
-        () => _i11.GetNowPlayingMovies(gh<_i8.MovieRepo>()));
-    gh.factory<_i12.GetPopularMovies>(
-        () => _i12.GetPopularMovies(gh<_i8.MovieRepo>()));
-    gh.factory<_i13.GetTopRatedMovies>(
-        () => _i13.GetTopRatedMovies(gh<_i8.MovieRepo>()));
-    gh.factory<_i14.GetUpcomingMovies>(
-        () => _i14.GetUpcomingMovies(gh<_i8.MovieRepo>()));
-    gh.factory<_i15.HomeCubit>(() => _i15.HomeCubit(gh<_i10.GetHomeMovies>()));
-    gh.factory<_i16.NowPlayingMoviesCubit>(
-        () => _i16.NowPlayingMoviesCubit(gh<_i11.GetNowPlayingMovies>()));
-    gh.factory<_i17.PopularMoviesCubit>(
-        () => _i17.PopularMoviesCubit(gh<_i12.GetPopularMovies>()));
-    gh.factory<_i18.TopRatedMoviesCubit>(
-        () => _i18.TopRatedMoviesCubit(gh<_i13.GetTopRatedMovies>()));
-    gh.factory<_i19.UpcomingMoviesCubit>(
-        () => _i19.UpcomingMoviesCubit(gh<_i14.GetUpcomingMovies>()));
+    gh.factory<_i10.SearchRemoteDts>(
+        () => _i11.SearchRemoteDtsImpl(gh<_i4.BaseHttpClient>()));
+    gh.factory<_i12.SearchRepo>(
+        () => _i13.SearchRepoImpl(gh<_i10.SearchRemoteDts>()));
+    gh.factory<_i14.GetHomeMovies>(
+        () => _i14.GetHomeMovies(gh<_i8.MovieRepo>()));
+    gh.factory<_i15.GetNowPlayingMovies>(
+        () => _i15.GetNowPlayingMovies(gh<_i8.MovieRepo>()));
+    gh.factory<_i16.GetPopularMovies>(
+        () => _i16.GetPopularMovies(gh<_i8.MovieRepo>()));
+    gh.factory<_i17.GetTopRatedMovies>(
+        () => _i17.GetTopRatedMovies(gh<_i8.MovieRepo>()));
+    gh.factory<_i18.GetUpcomingMovies>(
+        () => _i18.GetUpcomingMovies(gh<_i8.MovieRepo>()));
+    gh.factory<_i19.HomeCubit>(() => _i19.HomeCubit(gh<_i14.GetHomeMovies>()));
+    gh.factory<_i20.NowPlayingMoviesCubit>(
+        () => _i20.NowPlayingMoviesCubit(gh<_i15.GetNowPlayingMovies>()));
+    gh.factory<_i21.PopularMoviesCubit>(
+        () => _i21.PopularMoviesCubit(gh<_i16.GetPopularMovies>()));
+    gh.factory<_i22.SearchMovies>(
+        () => _i22.SearchMovies(gh<_i12.SearchRepo>()));
+    gh.factory<_i23.SearchMoviesCubit>(
+        () => _i23.SearchMoviesCubit(gh<_i22.SearchMovies>()));
+    gh.factory<_i24.TopRatedMoviesCubit>(
+        () => _i24.TopRatedMoviesCubit(gh<_i17.GetTopRatedMovies>()));
+    gh.factory<_i25.UpcomingMoviesCubit>(
+        () => _i25.UpcomingMoviesCubit(gh<_i18.GetUpcomingMovies>()));
     return this;
   }
 }
 
-class _$CoreModule extends _i20.CoreModule {}
+class _$CoreModule extends _i26.CoreModule {}

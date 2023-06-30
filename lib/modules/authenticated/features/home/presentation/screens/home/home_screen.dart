@@ -6,9 +6,9 @@ import 'package:movie_collection/infrastructure/routing/router.gr.dart';
 import 'package:movie_collection/infrastructure/service_locator/locator_container.dart';
 
 import 'package:movie_collection/infrastructure/widgets/button/default_button.dart';
-import 'package:movie_collection/infrastructure/widgets/card/movie_card.dart';
+import 'package:movie_collection/infrastructure/widgets/movie/movie_card.dart';
 import 'package:movie_collection/infrastructure/widgets/loading_indicator.dart';
-import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
+import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
 import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/home/home_cubit.dart';
 part 'widgets/movie_list.dart';
 

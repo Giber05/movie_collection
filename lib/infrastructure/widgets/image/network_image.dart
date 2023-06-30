@@ -12,7 +12,7 @@ class MCNetworkImage extends StatelessWidget {
     this.height,
   }) : super(key: key);
 
-  final String imageUrl;
+  final String? imageUrl;
   final BoxFit? fit;
   final double? height;
 

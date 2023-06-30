@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_collection/infrastructure/widgets/image/network_image.dart';
-import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
+import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieModel movie;

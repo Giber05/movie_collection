@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_collection/infrastructure/service_locator/locator_container.dart';
 import 'package:movie_collection/infrastructure/widgets/loading_indicator.dart';
 import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/popular_movies/popular_movies_cubit.dart';
-import 'package:movie_collection/modules/authenticated/features/home/presentation/widgets/movie_listtile.dart';
+import 'package:movie_collection/infrastructure/widgets/movie/movie_listtile.dart';
 part 'widgets/popular_movies_body.dart';
 
 @RoutePage()

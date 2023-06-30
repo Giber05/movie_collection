@@ -2,14 +2,14 @@ import 'package:equatable/equatable.dart';
 
 class MovieModel extends Equatable {
   final bool adult;
-  final String backdropPath;
+  final String? backdropPath;
   final List<int> genreIds;
   final int id;
   final String originalLanguage;
   final String originalTitle;
   final String overview;
-  final double popularity;
-  final String posterPath;
+  final num popularity;
+  final String? posterPath;
   final String releaseDate;
   final String title;
   final bool video;
@@ -32,7 +32,7 @@ class MovieModel extends Equatable {
     required this.voteAverage,
     required this.voteCount,
   });
-   @override
+  @override
   List<Object?> get props => [
         adult,
         backdropPath,

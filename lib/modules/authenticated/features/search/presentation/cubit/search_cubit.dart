@@ -1,33 +1,28 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_collection/infrastructure/constant/network_constants.dart';
-
+import 'package:movie_collection/modules/authenticated/features/search/domain/usecases/search_movies.dart';
 import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
-import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_now_playing_movies.dart';
-import 'package:movie_collection/modules/authenticated/features/home/domain/usecases/get_popular_movies.dart';
 
-part 'now_playing_movies_state.dart';
+part 'search_state.dart';
 
 @injectable
-class NowPlayingMoviesCubit extends Cubit<NowPlayingMoviesState> {
-  NowPlayingMoviesCubit(
-    this._getNowPlayingMovies,
-  ) : super(NowPlayingMoviesInitial());
+class SearchMoviesCubit extends Cubit<SearchMoviesState> {
+  SearchMoviesCubit(this._searchMovies) : super(SearchMoviesInitial());
 
-  final GetNowPlayingMovies _getNowPlayingMovies;
+  final SearchMovies _searchMovies;
 
-  void getMoreNowPlayingMovies() async {
+  void getMoreMovies(String keyword) async {
     final currentState = state;
-    if (currentState is NowPlayingMoviesLoaded) {
+    if (currentState is SearchMoviesLoaded) {
       if (currentState.isLoading) return;
       emit(currentState.copyWith(isLoading: true));
-      final useCaseCall = await _getNowPlayingMovies(
-        GetNowPlayingMoviesParams(
-         page: currentState.currentPage+1,
-          token: NetworkConstants.token,
-        ),
+      final useCaseCall = await _searchMovies(
+        SearchMoviesParams(
+            page: currentState.currentPage + 1,
+            token: NetworkConstants.token,
+            keyword: keyword),
       );
       useCaseCall.when(
         success: (data) {
@@ -36,7 +31,7 @@ class NowPlayingMoviesCubit extends Cubit<NowPlayingMoviesState> {
             emit(currentState.copyWith(hasReachedMax: true, isLoading: false));
           } else {
             final newData = currentState.movies + newMovies;
-            emit(NowPlayingMoviesLoaded(
+            emit(SearchMoviesLoaded(
               movies: newData,
               hasReachedMax: false,
               currentPage: data.current,
@@ -45,22 +40,21 @@ class NowPlayingMoviesCubit extends Cubit<NowPlayingMoviesState> {
           }
         },
         error: (exception) {
-          emit(NowPlayingMoviesFailed(message: exception.message));
+          emit(SearchMoviesFailed(message: exception.message));
         },
       );
     }
   }
 
-  void getNowPlayingMovies(
-      ) async {
-    emit(NowPlayingMoviesLoading());
-    final usecaseCall = await _getNowPlayingMovies(GetNowPlayingMoviesParams(token: NetworkConstants.token, page: 1)
-    );
+  void searchMovies(String keyword) async {
+    emit(SearchMoviesLoading());
+    final usecaseCall = await _searchMovies(SearchMoviesParams(
+        token: NetworkConstants.token, page: 1, keyword: keyword));
     usecaseCall.when(
       success: (data) {
         final movies = data.data;
         final currentPage = data.current;
-        emit(NowPlayingMoviesLoaded(
+        emit(SearchMoviesLoaded(
           isLoading: false,
           movies: movies,
           hasReachedMax: false,
@@ -68,7 +62,7 @@ class NowPlayingMoviesCubit extends Cubit<NowPlayingMoviesState> {
         ));
       },
       error: (exception) {
-        emit(NowPlayingMoviesFailed(message: exception.message));
+        emit(SearchMoviesFailed(message: exception.message));
       },
     );
   }

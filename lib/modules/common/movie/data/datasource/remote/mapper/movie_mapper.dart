@@ -1,5 +1,5 @@
 import 'package:movie_collection/infrastructure/architecture/mapper.dart';
-import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
+import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
 
 class MovieMapper extends JSONMapper<MovieModel> {
   @override

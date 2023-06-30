@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
-import 'package:movie_collection/modules/authenticated/features/home/domain/models/movie_model.dart';
+import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
 
 class HomeMoviesModel extends Equatable {
   final List<MovieModel> popularMovies;
