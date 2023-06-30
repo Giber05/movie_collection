@@ -10,7 +10,9 @@ import 'package:movie_collection/infrastructure/widgets/movie/movie_card.dart';
 import 'package:movie_collection/infrastructure/widgets/loading_indicator.dart';
 import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
 import 'package:movie_collection/modules/authenticated/features/home/presentation/cubit/home/home_cubit.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 part 'widgets/movie_list.dart';
+part 'widgets/now_playing_movies_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -48,49 +50,17 @@ class _HomeBody extends StatelessWidget {
         if (state is HomeLoaded) {
           return ListView(
             children: [
-              Placeholder(
-                fallbackHeight: size.height / 3,
+              _NowPlayingMoviesSection(
+                movies: state.movies.nowPlayingMovies,
+                title: 'Now Playing Movies',
+                onMorePressed: () {
+                  context.router.push(const NowPlayingMoviesRoute());
+                },
+                size: size,
               ),
               const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  DefaultButton(
-                    text: '',
-                    onPressed: () {},
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    content: const Row(
-                      children: [
-                        Icon(
-                          Icons.play_arrow,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 2),
-                        Text('Watch Now')
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  DefaultButton(
-                    text: '',
-                    onPressed: () {},
-                    content: const Icon(Icons.add),
-                  )
-                ],
-              ),
+              
               const SizedBox(height: 24),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _MovieList(
-                  size: size,
-                  title: 'Now Playing Movies',
-                  movies: state.movies.nowPlayingMovies,
-                  onMorePressed: () {
-                    context.router.push(const NowPlayingMoviesRoute());
-                  },
-                ),
-              ),
-              const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: _MovieList(

@@ -1,11 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:movie_collection/infrastructure/widgets/image/network_image.dart';
 import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieModel movie;
-
-  const MovieCard({Key? key, required this.movie}) : super(key: key);
+  final BoxFit? fit;
+  const MovieCard({
+    Key? key,
+    required this.movie,
+    this.fit = BoxFit.cover,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +30,8 @@ class MovieCard extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: MCNetworkImage(imageUrl: movie.posterPath),
+        child: MCNetworkImage(imageUrl: movie.posterPath, fit: fit),
       ),
     );
   }
 }
-

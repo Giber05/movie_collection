@@ -22,6 +22,7 @@ dependencies:
   injectable: ^2.1.2
   intl: ^0.18.1
   path_provider: ^2.0.15
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   auto_route_generator: ^7.1.1
