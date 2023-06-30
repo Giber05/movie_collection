@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_collection/modules/authenticated/features/home/presentation/screens/home/home_screen.dart';
 import 'package:movie_collection/modules/authenticated/features/search/presentation/screens/search_screen.dart';
+import 'package:movie_collection/modules/authenticated/features/watchlist/presentation/screens/watchlist_screen.dart';
 part 'widgets/bottom_navigation.dart';
 
 enum BotNavMenu {
@@ -24,8 +25,8 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
   late BotNavMenu _selectedMenu;
   final contentScreens = [
     const HomeScreen(),
-    SearchScreen(),
-    const Center(child: Text('Watch list'))
+    const SearchScreen(),
+    const WatchListScreen()
   ];
 
   @override

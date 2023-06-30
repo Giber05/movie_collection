@@ -79,7 +79,6 @@ class _MovieDetailBody extends StatelessWidget {
                             size: 20, color: Colors.white),
                       ),
                     )),
-                // Detail movie
                 Positioned(
                   child: Align(
                     alignment: Alignment.bottomCenter,
@@ -216,7 +215,6 @@ class _MovieDetailBody extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 8),
-
                             Text(
                               movie.overview,
                               style: const TextStyle(
