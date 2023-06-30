@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:movie_collection/infrastructure/routing/router.gr.dart';
-import 'package:movie_collection/modules/authenticated/wrapper/layout_screen.dart';
 
 ///
 ///
@@ -18,5 +17,6 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: TopRatedMoviesRoute.page),
         AutoRoute(page: UpcomingMoviesRoute.page),
         AutoRoute(page: NowPlayingMoviesRoute.page),
+        AutoRoute(page: MovieDetailRoute.page),
       ];
 }

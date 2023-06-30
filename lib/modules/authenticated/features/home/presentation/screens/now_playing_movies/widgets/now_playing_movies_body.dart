@@ -63,7 +63,13 @@ class _NowPlayingMoviesBodyState extends State<_NowPlayingMoviesBody> {
                         margin: const EdgeInsets.only(bottom: 16),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: MovieListTile(movie: movie),
+                          child: MovieListTile(
+                            movie: movie,
+                            onTap: (movie) {
+                              context.router
+                                  .push(MovieDetailRoute(movieId: movie.id));
+                            },
+                          ),
                         ),
                       );
                     }

@@ -61,7 +61,11 @@ class _MovieList extends StatelessWidget {
               final movie = movies[index];
               return Padding(
                 padding: const EdgeInsets.all(6),
-                child: MovieCard(movie: movie),
+                child: GestureDetector(
+                    onTap: () {
+                      context.router.push(MovieDetailRoute(movieId: movie.id));
+                    },
+                    child: MovieCard(movie: movie)),
               );
             },
           ),

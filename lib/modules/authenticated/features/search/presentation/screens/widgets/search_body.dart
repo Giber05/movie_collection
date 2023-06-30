@@ -106,7 +106,10 @@ class _SearchBodyState extends State<_SearchBody> {
                                       horizontal: 16),
                                   child: MovieListTile(
                                     movie: movie,
-                                    onTap: (data) {},
+                                    onTap: (movie) {
+                                      context.router.push(
+                                          MovieDetailRoute(movieId: movie.id));
+                                    },
                                   ),
                                 ),
                               );

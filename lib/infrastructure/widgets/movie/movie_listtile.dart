@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:movie_collection/infrastructure/widgets/image/network_image.dart';
 import 'package:movie_collection/modules/common/movie/domain/models/movie_model.dart';
-import 'package:movie_collection/modules/common/movie_genre/presentation/genre_buble.dart';
+import 'package:movie_collection/modules/common/movie_genre/presentation/genre_buble_by_ids.dart';
 
 class MovieListTile extends StatelessWidget {
   const MovieListTile({
@@ -85,7 +85,7 @@ class MovieListTile extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    GenreBubble(genreIds: movie.genreIds),
+                    GenreBubbleByIds(genreIds: movie.genreIds),
                     const SizedBox(height: 8),
                   ],
                 ),
