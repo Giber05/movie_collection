@@ -132,7 +132,7 @@ class _MovieDetailBody extends StatelessWidget {
                                   color: Colors.amber,
                                 ),
                                 Text(
-                                  "${movie.voteAverage}/10  (${movie.voteCount})",
+                                  "${movie.voteAverage.toStringAsFixed(1)}/10  (${movie.voteCount})",
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),

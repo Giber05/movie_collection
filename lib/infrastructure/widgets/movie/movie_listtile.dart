@@ -77,7 +77,7 @@ class MovieListTile extends StatelessWidget {
                           color: Colors.amber,
                         ),
                         Text(
-                          "${movie.voteAverage}/10  (${movie.voteCount})",
+                          "${movie.voteAverage.toStringAsFixed(1)}/10  (${movie.voteCount})",
                           style: const TextStyle(
                             color: Colors.white,
                           ),
@@ -85,7 +85,7 @@ class MovieListTile extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    GenreBubbleByIds(genreIds: movie.genreIds),
+                    Expanded(child: GenreBubbleByIds(genreIds: movie.genreIds)),
                     const SizedBox(height: 8),
                   ],
                 ),
